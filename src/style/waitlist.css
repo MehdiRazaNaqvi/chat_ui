@@ -1,0 +1,104 @@
+.waitlist_base {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.waitlist_right {
+    height: 100%;
+    width: 30%;
+    position: absolute;
+    right: 0%;
+    z-index: -1;
+    background-color: rgba(23, 107, 58, 1);
+    background-image: url('../images/waitlist.png');
+    background-size: cover;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.waitlist_input {
+    height: 15rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    width: 100%;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+
+    /* gap: 0.5rem; */
+
+    
+
+
+}
+
+
+
+
+.button_waitlist {
+    width: 10rem !important;
+    height: 3rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
+
+
+
+
+}
+
+.input {
+    height: 3.5rem;
+}
+
+
+
+.formgroup {
+
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 100%;
+    width: 80%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+
+
+    
+
+}
