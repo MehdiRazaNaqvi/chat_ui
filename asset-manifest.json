@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/foresome/static/css/main.c9bb5225.css",
+    "main.js": "/foresome/static/js/main.a3dc5dbf.js",
+    "static/js/787.a41cc6d7.chunk.js": "/foresome/static/js/787.a41cc6d7.chunk.js",
+    "static/media/mobile4.svg": "/foresome/static/media/mobile4.26751b0313c6f3ee77e241fe3ab75b64.svg",
+    "static/media/thank.png": "/foresome/static/media/thank.e1e5e0edc68ce02fecaf.png",
+    "static/media/banner.png": "/foresome/static/media/banner.2701de2229e9090ce1df.png",
+    "static/media/waitlist.png": "/foresome/static/media/waitlist.c3416c49744ff3df1ae2.png",
+    "static/media/mobile3.svg": "/foresome/static/media/mobile3.1b1578373622fe8a761e2df55f04cab6.svg",
+    "static/media/curveMobile.png": "/foresome/static/media/curveMobile.93a4c0366c8e983de834.png",
+    "static/media/mobile1.png": "/foresome/static/media/mobile1.0e2006b1296a90145af7.png",
+    "static/media/waitlist2.png": "/foresome/static/media/waitlist2.5aa78e2671d700b45c6d.png",
+    "static/media/mobile4.png": "/foresome/static/media/mobile4.b4c7dbc61c0bf9779abb.png",
+    "static/media/hockey.svg": "/foresome/static/media/hockey.d786461d6a7acf290b08eb7558249c66.svg",
+    "index.html": "/foresome/index.html",
+    "main.c9bb5225.css.map": "/foresome/static/css/main.c9bb5225.css.map",
+    "main.a3dc5dbf.js.map": "/foresome/static/js/main.a3dc5dbf.js.map",
+    "787.a41cc6d7.chunk.js.map": "/foresome/static/js/787.a41cc6d7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c9bb5225.css",
+    "static/js/main.a3dc5dbf.js"
+  ]
+}
