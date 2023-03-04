@@ -12,7 +12,7 @@ import io from "socket.io-client"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-import { save_chat } from "../store/counterslice"
+import { save_chat, addNotifications } from "../store/counterslice"
 
 import { useDispatch, useSelector } from "react-redux"
 
@@ -40,6 +40,11 @@ const App = () => {
 
 
     const [message, setmessage] = useState('')
+    const [room, setRoom] = useState(''
+    )
+    const [notifications, setNotifications] = useState([])
+
+
 
     // const [chat, setchat] = useState([])
 
@@ -56,7 +61,7 @@ const App = () => {
 
 
 
-        socket.emit("chat", { mess: message, name: count?.current_user?.username, user_pic: count?.current_user?.photoURL, time: time, email: count?.current_user?.email })
+        socket.emit("chat", { mess: message, name: count?.current_user?.username, user_pic: count?.current_user?.photoURL, time: time, email: count?.current_user?.email }, room)
 
 
         // const headers = {
@@ -91,7 +96,13 @@ const App = () => {
     }
 
 
-    console.log(socket.id)
+
+    const join_room = () => {
+        socket.emit('join-room', room)
+    }
+
+    // console.log(socket.id)
+
 
 
 
@@ -101,6 +112,12 @@ const App = () => {
 
             dispatch(save_chat(payload))
 
+        })
+
+        socket.on("room-joined", (payload) => {
+
+
+            dispatch(addNotifications(payload))
         })
 
     }, [1])
@@ -219,9 +236,9 @@ const App = () => {
 
                     <div style={{ position: "relative" }} className={count?.current_user?.email == v.email ? "message_bg own_msg" : "message_bg"} key={i}>
 
-                        <img src={v.user_pic} referrerPolicy="no-referrer" className="text_pic" style={{ height: "3rem", width: "3rem" }} />
+                        <img src={v.user_pic} referrerPolicy="no-referrer" className="text_pic" style={{ height: "4rem", width: "4rem" }} />
 
-                        <span style={{ fontSize: "1.2rem", color: "lightgray", position: "absolute", top: "0.5rem", left: "4.5rem" }}>  {v.name} </span>
+                        <span style={{ fontSize: "1.2rem", color: "lightgray", position: "absolute", top: "0.5rem", left: "5rem" }}>  {v.name} </span>
 
                         <span style={{ fontSize: "1.2rem", width: "50%", wordBreak: "break-word" }}>  {v.mess} </span>
                         <p style={{ fontSize: "1rem" }} className={count.current_user?.email == v.email ? "text-time" : "text-time-other"} >{v.time}</p>
@@ -233,6 +250,7 @@ const App = () => {
 
 
                     </div>
+
                 ))}
 
 
@@ -246,16 +264,41 @@ const App = () => {
 
 
             {count?.current_user?.email ?
+                <>
 
-                <span className="send_tab" style={{ position: "absolute", bottom: "0px" }} >
+                    <span className="send_tab">
 
-                    <Form onSubmit={(e) => { e.preventDefault(); sendchat() }} style={{ padding: "0px", margin: "0px", width: "100%", display: "flex" }}>
-                        <Input required style={{ height: "4rem" }} size="lg" className="form-control" type="text" placeholder="Type message" value={message} onChange={(e) => setmessage(e.target.value)} />
+                        {count.notifications?.map((v, i) =>
 
-                        <Button type="submit" color="success" size="lg" className="send_btn">Send</Button>
-                    </Form>
-                </span>
+                            <div style={{}} className="join_noti" key={i} >
+                                Someone Joined {v}
+                            </div>
+                        )}
 
+                    </span>
+
+
+                    <span className="send_tab">
+
+
+                        <Form onSubmit={(e) => { e.preventDefault(); join_room() }} style={{ padding: "0px", margin: "0px", width: "100%", display: "flex" }}>
+                            <Input required style={{ height: "4rem" }} size="lg" className="form-control" type="text" placeholder="Room Name" value={room} onChange={(e) => setRoom(e.target.value)} />
+
+                            <Button type="submit" color="success" size="lg" className="send_btn">Join</Button>
+
+                        </Form>
+                    </span>
+                    <span className="send_tab">
+
+
+                        <Form onSubmit={(e) => { e.preventDefault(); sendchat() }} style={{ padding: "0px", margin: "0px", width: "100%", display: "flex" }}>
+                            <Input required style={{ height: "4rem" }} size="lg" className="form-control" type="text" placeholder="Type message" value={message} onChange={(e) => setmessage(e.target.value)} />
+
+                            <Button type="submit" color="success" size="lg" className="send_btn">Send</Button>
+
+                        </Form>
+                    </span>
+                </>
 
                 :
 

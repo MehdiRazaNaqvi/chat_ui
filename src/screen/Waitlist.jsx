@@ -16,11 +16,12 @@ import { useState } from "react"
 // import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom"
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { useDispatch } from "react-redux"
+
+import { useDispatch, useSelector } from "react-redux"
 
 
 import { userLogin } from "../store/counterslice"
+import { useEffect } from "react"
 
 
 
@@ -48,6 +49,7 @@ const App = () => {
     };
 
 
+    const state = useSelector(state => state.counter)
 
     const setLogin = () => {
         dispatch(userLogin({ username: name, email, photoURL: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" }))
@@ -57,6 +59,13 @@ const App = () => {
     }
 
 
+    useEffect(() => {
+        !state?.current_user?.email ?
+            navigate("/foresome")
+            :
+            navigate("/foresome/chat")
+
+    }, [])
 
     return (
 
@@ -82,7 +91,7 @@ const App = () => {
                     </FormGroup>
 
 
-                    <FormGroup className="formgroup" >
+                    <FormGroup className="formgroup">
 
                         <Input required onChange={(e) => set_name(e.target.value)} className="input" placeholder="Enter Name" />
 
@@ -90,7 +99,7 @@ const App = () => {
 
 
 
-                    <Button size="lg" type="primary" color="success" className="button_waitlist">Join Waitlist</Button>
+                    <Button size="lg" type="primary" color="success" className="button_waitlist">Enter Chat</Button>
 
 
 

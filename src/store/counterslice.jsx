@@ -7,9 +7,9 @@ const initialState = {
 
 
   current_user: {
-    username: "",
-    email: "",
-    photoURL: ""
+    // username: "",
+    // email: "",
+    // photoURL: ""
   }
 
   ,
@@ -18,8 +18,11 @@ const initialState = {
 
 
 
-  ]
+  ],
 
+  notifications: [
+
+  ],
 
 
 
@@ -56,6 +59,10 @@ export const counterSlice = createSlice({
     },
 
 
+    addNotifications: (state, action) => {
+      state.notifications = [...state.notifications , action.payload]
+    },
+
 
   },
 
@@ -68,6 +75,6 @@ export const counterSlice = createSlice({
 
 
 
-export const { save_chat, userLogin } = counterSlice.actions
+export const { save_chat, userLogin , addNotifications } = counterSlice.actions
 
 export default counterSlice.reducer

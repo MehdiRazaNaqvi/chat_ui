@@ -56,7 +56,7 @@ const App = () => {
 
 
 
-        socket.emit("chat", { mess: message, name: count?.current_user?.username, user_pic: count?.current_user?.photoURL, time: time, email: count?.current_user?.email })
+        socket.emit("chat", { mess: message, name: count?.current_user?.username, user_pic: count?.current_user?.photoURL, time: time, email: count?.current_user?.email }, socket.id)
 
 
         // const headers = {
@@ -219,9 +219,9 @@ const App = () => {
 
                     <div style={{ position: "relative" }} className={count?.current_user?.email == v.email ? "message_bg own_msg" : "message_bg"} key={i}>
 
-                        <img src={v.user_pic} referrerPolicy="no-referrer" className="text_pic" style={{ height: "3rem", width: "3rem" }} />
+                        <img src={v.user_pic} referrerPolicy="no-referrer" className="text_pic" style={{ height: "4rem", width: "4rem" }} />
 
-                        <span style={{ fontSize: "1.2rem", color: "lightgray", position: "absolute", top: "0.5rem", left: "4.5rem" }}>  {v.name} </span>
+                        <span style={{ fontSize: "1.2rem", color: "lightgray", position: "absolute", top: "0.5rem", left: "5rem" }}>  {v.name} </span>
 
                         <span style={{ fontSize: "1.2rem", width: "50%", wordBreak: "break-word" }}>  {v.mess} </span>
                         <p style={{ fontSize: "1rem" }} className={count.current_user?.email == v.email ? "text-time" : "text-time-other"} >{v.time}</p>
