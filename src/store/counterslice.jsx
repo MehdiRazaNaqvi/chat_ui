@@ -48,7 +48,8 @@ export const counterSlice = createSlice({
     save_chat: (state, action) => {
 
 
-      state.chat.push(action.payload)
+      state.chat?.push(action.payload)
+
 
     },
 
@@ -60,7 +61,7 @@ export const counterSlice = createSlice({
 
 
     addNotifications: (state, action) => {
-      state.notifications = [...state.notifications , action.payload]
+      state.notifications = [...state.notifications, action.payload]
     },
 
 
@@ -75,6 +76,6 @@ export const counterSlice = createSlice({
 
 
 
-export const { save_chat, userLogin , addNotifications } = counterSlice.actions
+export const { save_chat, userLogin, addNotifications } = counterSlice.actions
 
 export default counterSlice.reducer

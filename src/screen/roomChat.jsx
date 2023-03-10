@@ -26,6 +26,9 @@ import { Input, Button, Form } from "reactstrap"
 const socket_server = "http://localhost:4000"
 const socket = io.connect(socket_server)
 
+// const socket_server_reciever = "http://localhost:5000"
+// const socketReciever = io.connect(socket_server_reciever)
+
 
 
 
@@ -40,8 +43,7 @@ const App = () => {
 
 
     const [message, setmessage] = useState('')
-    const [room, setRoom] = useState(''
-    )
+    const [room, setRoom] = useState('')
     const [notifications, setNotifications] = useState([])
 
 
@@ -50,8 +52,6 @@ const App = () => {
 
 
     const navigate = useNavigate()
-
-
 
 
 
@@ -98,7 +98,7 @@ const App = () => {
 
 
     const join_room = () => {
-        socket.emit('join-room', room)
+        socket.emit('join_room', room)
     }
 
     // console.log(socket.id)
@@ -111,8 +111,19 @@ const App = () => {
         socket.on("chat", (payload) => {
 
             dispatch(save_chat(payload))
+            console.log(payload)
 
         })
+
+
+        // socket.emit("load_chats", (payload) => {
+
+        //     dispatch(save_chat(payload))
+        //     console.log(payload)
+
+        // })
+
+
 
         socket.on("room-joined", (payload) => {
 
@@ -120,7 +131,7 @@ const App = () => {
             dispatch(addNotifications(payload))
         })
 
-    }, [1])
+    }, [])
 
 
 
@@ -236,16 +247,16 @@ const App = () => {
 
                     <div style={{ position: "relative" }} className={count?.current_user?.email == v.email ? "message_bg own_msg" : "message_bg"} key={i}>
 
-                        <img src={v.user_pic} referrerPolicy="no-referrer" className="text_pic" style={{ height: "4rem", width: "4rem" }} />
+                        <img src={v.user_pic} referrerPolicy="no-referrer" className="text_pic" style={{ height: "3.5rem", width: "3.5rem" }} />
 
                         <span style={{ fontSize: "1.2rem", color: "lightgray", position: "absolute", top: "0.5rem", left: "5rem" }}>  {v.name} </span>
 
                         <span style={{ fontSize: "1.2rem", width: "50%", wordBreak: "break-word" }}>  {v.mess} </span>
-                        <p style={{ fontSize: "1rem" }} className={count.current_user?.email == v.email ? "text-time" : "text-time-other"} >{v.time}</p>
+                        {/* <p style={{ fontSize: "1rem" }} className={count.current_user?.email == v.email ? "text-time" : "text-time-other"} >{v.time}</p> */}
 
 
 
-                        <img style={{ height: "1.5rem", width: "1.5rem" }} className={count.current_user?.email == v.email ? "del-img" : "invisible"} src="https://img.icons8.com/external-inkubators-detailed-outline-inkubators/25/000000/external-delete-ecommerce-user-interface-inkubators-detailed-outline-inkubators.png" />
+                        {/* <img style={{ height: "1.5rem", width: "1.5rem" }} className={count.current_user?.email == v.email ? "del-img" : "invisible"} src="https://img.icons8.com/external-inkubators-detailed-outline-inkubators/25/000000/external-delete-ecommerce-user-interface-inkubators-detailed-outline-inkubators.png" /> */}
 
 
 
@@ -266,7 +277,7 @@ const App = () => {
             {count?.current_user?.email ?
                 <>
 
-                    <span className="send_tab">
+                    {/* <span className="send_tab">
 
                         {count.notifications?.map((v, i) =>
 
@@ -275,7 +286,7 @@ const App = () => {
                             </div>
                         )}
 
-                    </span>
+                    </span> */}
 
 
                     <span className="send_tab">

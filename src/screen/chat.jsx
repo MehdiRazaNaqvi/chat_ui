@@ -93,6 +93,7 @@ const App = () => {
 
     console.log(socket.id)
 
+    
 
 
     useEffect(() => {
@@ -101,6 +102,7 @@ const App = () => {
 
             dispatch(save_chat(payload))
 
+            
         })
 
     }, [1])
